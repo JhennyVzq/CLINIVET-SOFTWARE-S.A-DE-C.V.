@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - CLINIVET SOFTWARE</title>
+    <style>
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #f6fbfb 0%, #eef6f9 100%);
+            color: #213044;
+            line-height: 1.6;
+        }
+
+        /* Header Mejorado */
+        .main-header {
+            background: linear-gradient(90deg, #0a3b45 0%, #0a7b73 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #0a7b73;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .brand-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .brand-text .slogan {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Navegación */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Menú móvil */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Header */
+        .hero {
+            background: linear-gradient(90deg, rgba(10,58,88,0.85), rgba(4,120,111,0.85)), 
+                        url('https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') center/cover no-repeat;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #0a7b73;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(10, 123, 115, 0.3);
+        }
+
+        .btn:hover {
+            background: #0d9c91;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(10, 123, 115, 0.4);
+        }
+
+        /* Producto Estrella - PETWELL */
+        .featured-product {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .featured-container {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(10, 123, 115, 0.15);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .featured-image {
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-container:hover .featured-image img {
+            transform: scale(1.05);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .featured-content {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #083142;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .featured-content h2::before {
+            content: "🐾";
+            font-size: 32px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0a7b73, #0d9c91);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .featured-content .description {
+            font-size: 1.1rem;
+            color: #4a5c6a;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .featured-features {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .featured-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .featured-features li:before {
+            content: "✓";
+            color: #0a7b73;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        .featured-price {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .featured-price .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0a7b73;
+        }
+
+        .price-note {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        /* Productos Section */
+        .products-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #0d2a3a;
+            font-size: 2.5rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #0a7b73;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #083142;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 50%;
+        }
+        
+        .product-content h3::before {
+            content: "";
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0a7b73, #0d9c91);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .product-card:nth-child(1) h3::before { content: "🦁"; }
+        .product-card:nth-child(2) h3::before { content: "🐠"; }
+        .product-card:nth-child(3) h3::before { content: "📱"; }
+        .product-card:nth-child(4) h3::before { content: "🔗"; }
+
+        .product-content p {
+            color: #4a5c6a;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .product-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .product-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-features li:before {
+            content: "✓";
+            color: #0a7b73;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .product-price {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0a7b73;
+        }
+
+        /* Formulario de Cotización */
+        .quote-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #eef6f9 100%);
+            padding: 80px 20px;
+        }
+
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0d2a3a;
+            font-size: 2.2rem;
+        }
+
+        .quote-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #083142;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 12px 15px;
+            border: 2px solid #e8f0f5;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #0a7b73;
+            box-shadow: 0 0 0 3px rgba(10, 123, 115, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            background: #0a7b73;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #0d9c91;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(10, 123, 115, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #fff;
+            background: #07242f;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #cfeff0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .main-nav {
+                width: 100%;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: block;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .brand-text h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .featured-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+            
+            .featured-content {
+                padding: 30px;
+            }
+            
+            .featured-content h2 {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .quote-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .quote-container {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Mejorado -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="imagenes/logo.png" alt="CLINIVET SOFTWARE" class="logo-img">
+                </div>
+                <div class="brand-text">
+                    <h1>CLINIVET SOFTWARE</h1>
+                    <div class="slogan">Tecnología para el bienestar animal</div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+                    <li><a href="productos.html" class="nav-link active">Productos</a></li>
+                    <li><a href="index.html" class="nav-link">Conócenos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Nuestros Productos</h1>
+            <p>Soluciones especializadas para cada tipo de establecimiento de cuidado animal. Desde pequeñas clínicas hasta grandes zoológicos.</p>
+            <a href="#producto-estrella" class="btn">Ver Producto Estrella</a>
+        </div>
+    </section>
+
+    <!-- Producto Estrella - PETWELL -->
+    <section id="producto-estrella" class="featured-product">
+        <div class="featured-container">
+            <div class="featured-image">
+                <img src="imagenes/a.jpg" alt="PETWELL">
+                <div class="featured-badge">PRODUCTO ESTRELLA</div>
+            </div>
+            <div class="featured-content">
+                <h2>PETWELL</h2>
+                <p class="description">Sistema completo de gestión para clínicas veterinarias que revoluciona la manera en que gestionas tu establecimiento. Diseñado específicamente para optimizar todos los procesos de tu clínica.</p>
+                <ul class="featured-features">
+                    <li>Historial médico digital completo con seguimiento de pacientes</li>
+                    <li>Sistema de citas inteligente con recordatorios automáticos</li>
+                    <li>Gestión de farmacia con alertas de stock</li>
+                    <li>App móvil para clientes con acceso a historiales</li>
+                    <li>Reportes analíticos interactivos</li>
+                    <li>Soporte técnico 24/7 y actualizaciones gratuitas</li>
+                </ul>
+                <div class="featured-price">
+                    <div>
+                        <div class="price">Segun planes</div>
+                    </div>
+                    <a href="#cotizacion" class="btn">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Section -->
+    <section id="productos" class="products-section">
+        <h2 class="section-title">Otros Productos Especializados</h2>
+        
+        <div class="products-grid">
+            <!-- Producto 2 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="imagenes/b.jpg" alt="ZOO MANAGER">
+                    <div class="product-badge">Nuevo</div>
+                </div>
+                <div class="product-content">
+                    <h3>ZOO MANAGER</h3>
+                    <p>Solución especializada para la gestión integral de zoológicos y acuarios, incluyendo programas de conservación, alimentación, salud y educación.</p>
+                    <ul class="product-features">
+                        <li>Gestión de colecciones animales</li>
+                        <li>Programas de alimentación y salud</li>
+                        <li>Seguimiento reproductivo</li>
+                        <li>Módulo educativo y de visitantes</li>
+                        <li>Reportes para autoridades</li>
+                    </ul>
+                    <div class="product-price">
+                        <div>
+                            <div class="price">Segun planes</div>
+                            <div class="price-note">Cotización según necesidades</div>
+                        </div>
+                        <a href="#cotizacion" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 3 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="imagenes/c.jpg" alt="AQUA CARE">
+                </div>
+                <div class="product-content">
+                    <h3>AQUA CARE</h3>
+                    <p>Plataforma diseñada específicamente para centros que manejan especies acuáticas, con módulos para control de calidad de agua, alimentación y salud.</p>
+                    <ul class="product-features">
+                        <li>Monitoreo de parámetros del agua</li>
+                        <li>Control de sistemas de filtración</li>
+                        <li>Gestión de alimentación</li>
+                        <li>Registro de tratamientos</li>
+                        <li>Alertas automáticas</li>
+                    </ul>
+                    <div class="product-price">
+                        <div>
+                            <div class="price">Segun planes</div>
+                            <div class="price-note">Cotización según necesidades</div>
+                        </div>
+                        <a href="#cotizacion" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 4 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="imagenes/d.jpg" alt="VET MOBILE">
+                </div>
+                <div class="product-content">
+                    <h3>VET MOBILE</h3>
+                    <p>Aplicación móvil que permite a veterinarios acceder a historiales médicos, registrar consultas y comunicarse con propietarios desde cualquier dispositivo.</p>
+                    <ul class="product-features">
+                        <li>Acceso a historiales completos</li>
+                        <li>Registro de consultas en campo</li>
+                        <li>Comunicación con propietarios</li>
+                        <li>Prescripciones digitales</li>
+                        <li>Sincronización en tiempo real</li>
+                    </ul>
+                    <div class="product-price">
+                        <div>
+                            <div class="price">Segun planes</div>
+                            <div class="price-note">Cotización según necesidades</div>
+                        </div>
+                        <a href="#cotizacion" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Producto 5 -->
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="imagenes/e.jpg" alt="CLINIVET CONNECT">
+                    <div class="product-badge">Próximamente</div>
+                </div>
+                <div class="product-content">
+                    <h3>CLINIVET CONNECT</h3>
+                    <p>Plataforma de interoperabilidad que permite la conexión segura entre diferentes establecimientos veterinarios, facilitando el intercambio de información médica.</p>
+                    <ul class="product-features">
+                        <li>Intercambio seguro de historiales</li>
+                        <li>Colaboración entre especialistas</li>
+                        <li>Acceso a referencias y consultas</li>
+                        <li>Cumplimiento de normativas</li>
+                        <li>Encriptación de extremo a extremo</li>
+                    </ul>
+                    <div class="product-price">
+                        <div>
+                            <div class="price">Segun planes</div>
+                            <div class="price-note">Cotización según necesidades</div>
+                        </div>
+                        <a href="#cotizacion" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Cotización -->
+    <section id="cotizacion" class="quote-section">
+        <div class="quote-container">
+            <h2 class="quote-title">Solicita tu Cotización Personalizada</h2>
+            <form class="quote-form">
+                <div class="form-group">
+                    <label class="form-label">Nombre completo *</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Correo electrónico *</label>
+                    <input type="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Teléfono *</label>
+                    <input type="tel" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Empresa o Clínica</label>
+                    <input type="text" class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Producto de interés *</label>
+                    <select class="form-select" required>
+                        <option value="">Selecciona un producto</option>
+                        <option value="petwell">PETWELL - Gestión para Clínicas Veterinarias</option>
+                        <option value="zoo-manager">ZOO MANAGER - Para Zoológicos y Acuarios</option>
+                        <option value="aqua-care">AQUA CARE - Para Centros Acuáticos</option>
+                        <option value="vet-mobile">VET MOBILE - Aplicación Móvil</option>
+                        <option value="connect">CLINIVET CONNECT - Interoperabilidad</option>
+                        <option value="personalizado">Solución Personalizada</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Tamaño de tu establecimiento</label>
+                    <select class="form-select">
+                        <option value="">Selecciona una opción</option>
+                        <option value="pequena">Clínica pequeña (1-3 veterinarios)</option>
+                        <option value="mediana">Clínica mediana (4-8 veterinarios)</option>
+                        <option value="grande">Clínica grande (9+ veterinarios)</option>
+                        <option value="hospital">Hospital veterinario</option>
+                        <option value="zoo">Zoológico o Acuario</option>
+                        <option value="otro">Otro tipo de establecimiento</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Requerimientos específicos</label>
+                    <textarea class="form-textarea" placeholder="Describe tus necesidades específicas, funcionalidades requeridas, integraciones necesarias, etc."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Solicitar Cotización</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href=".">Página Principal</a>
+            <a href="servicios.html">Nuestros Servicios</a>
+            <a href="mailto:contacto@clinivet.com">Contacto</a>
+        </div>
+        <p>CLINIVET SOFTWARE, S.A. DE C.V. — © <span id="year"></span> — Tecnología que impulsa el bienestar animal</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Menú móvil
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Manejo del formulario
+        const quoteForm = document.querySelector('.quote-form');
+        quoteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Nos pondremos en contacto contigo en un plazo de 24 horas para proporcionarte una cotización personalizada.');
+            this.reset();
+        });
+        // Manejo de parámetros URL para preseleccionar servicio
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const servicio = urlParams.get('servicio');
+        
+            if (servicio) {
+                const selectProducto = document.querySelector('select[name="producto"]');
+                if (selectProducto) {
+                    selectProducto.value = servicio;
+                }
+            
+                // Hacer scroll suave al formulario
+                setTimeout(() => {
+                    document.getElementById('cotizacion').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

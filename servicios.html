@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - CLINIVET SOFTWARE</title>
+    <style>
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(180deg, #f6fbfb 0%, #eef6f9 100%);
+            color: #213044;
+            line-height: 1.6;
+        }
+
+        /* Header Mejorado */
+        .main-header {
+            background: linear-gradient(90deg, #0a3b45 0%, #0a7b73 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #0a7b73;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .brand-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .brand-text .slogan {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Navegación */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Menú móvil */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(90deg, rgba(10,58,88,0.85), rgba(4,120,111,0.85)), 
+                        url('https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #0a7b73;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(10, 123, 115, 0.3);
+        }
+
+        .btn:hover {
+            background: #0d9c91;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(10, 123, 115, 0.4);
+        }
+
+        /* Servicios */
+        .services-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #0d2a3a;
+            font-size: 2.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 50%;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
+        }
+
+        .service-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #083142;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-content h3::before {
+            content: "";
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0a7b73, #0d9c91);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .service-card:nth-child(1) h3::before { content: "💻"; }
+        .service-card:nth-child(2) h3::before { content: "📱"; }
+        .service-card:nth-child(3) h3::before { content: "🔧"; }
+        .service-card:nth-child(4) h3::before { content: "📊"; }
+        .service-card:nth-child(5) h3::before { content: "🔒"; }
+        .service-card:nth-child(6) h3::before { content: "📚"; }
+
+        .service-content p {
+            color: #4a5c6a;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .service-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            color: #0a7b73;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .service-cta {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Proceso de Trabajo */
+        .process-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #eef6f9 100%);
+            padding: 80px 20px;
+        }
+
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0a7b73, #0d9c91);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .process-step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #083142;
+        }
+
+        .process-step p {
+            color: #4a5c6a;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(90deg, #0a3b45, #0a7b73);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-light {
+            background: white;
+            color: #0a7b73;
+        }
+
+        .btn-light:hover {
+            background: #f0f0f0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #fff;
+            background: #07242f;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #cfeff0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .main-nav {
+                width: 100%;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            .main-nav.active {
+                display: block;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .brand-text h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Mejorado -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="imagenes/logo.png" alt="CLINIVET SOFTWARE" class="logo-img">
+                </div>
+                <div class="brand-text">
+                    <h1>CLINIVET SOFTWARE</h1>
+                    <div class="slogan">Tecnología para el bienestar animal</div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn">☰</button>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="servicios.html" class="nav-link active">Servicios</a></li>
+                    <li><a href="productos.html" class="nav-link">Productos</a></li>
+                    <li><a href="index.html" class="nav-link">Conócenos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Nuestros Servicios</h1>
+            <p>Soluciones tecnológicas especializadas para el cuidado animal. Automatizamos y optimizamos sus procesos para que pueda dedicar más tiempo a lo esencial.</p>
+            <a href="#servicios" class="btn">Explorar Servicios</a>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="services-section">
+        <h2 class="section-title">Servicios Especializados</h2>
+        
+        <div class="services-grid">
+            <!-- Servicio 1 -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="imagenes/a2.jpg" alt="Desarrollo de Software">
+                </div>
+                <div class="service-content">
+                    <h3>Desarrollo de Software a la Medida</h3>
+                    <p>Creación de sistemas personalizados adaptados a las necesidades específicas de cada establecimiento veterinario, zoológico o centro de cuidado animal.</p>
+                    <ul class="service-features">
+                        <li>Análisis de procesos y necesidades</li>
+                        <li>Diseño de arquitectura de software</li>
+                        <li>Desarrollo ágil y iterativo</li>
+                        <li>Pruebas exhaustivas de calidad</li>
+                        <li>Implementación y despliegue</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Servicio 2 -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="imagenes/a1.jpg" alt="Sistemas Móviles">
+                </div>
+                <div class="service-content">
+                    <h3>Implementación de Sistemas Móviles</h3>
+                    <p>Desarrollo de aplicaciones móviles que permiten a los profesionales acceder a información crítica y gestionar procesos desde cualquier lugar.</p>
+                    <ul class="service-features">
+                        <li>Aplicaciones nativas e híbridas</li>
+                        <li>Interfaces intuitivas y responsivas</li>
+                        <li>Sincronización en tiempo real</li>
+                        <li>Compatibilidad multiplataforma</li>
+                        <li>Integración con sistemas existentes</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Servicio 3 -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="imagenes/a3.jpg" alt="Migración de Sistemas">
+                </div>
+                <div class="service-content">
+                    <h3>Migración y Actualización de Sistemas</h3>
+                    <p>Modernización de sistemas legacy hacia plataformas actuales, garantizando la preservación de datos históricos y mejorando la funcionalidad.</p>
+                    <ul class="service-features">
+                        <li>Evaluación de sistemas existentes</li>
+                        <li>Migración segura de datos</li>
+                        <li>Minimización de tiempo de inactividad</li>
+                        <li>Capacitación del personal</li>
+                        <li>Soporte post-migración</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Servicio 4 -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="imagenes/a4.jpg" alt="Análisis de Datos">
+                </div>
+                <div class="service-content">
+                    <h3>Análisis de Datos y Business Intelligence</h3>
+                    <p>Implementación de herramientas de análisis que transforman datos operativos en información valiosa para la toma de decisiones estratégicas.</p>
+                    <ul class="service-features">
+                        <li>Dashboards interactivos</li>
+                        <li>Reportes automatizados</li>
+                        <li>Análisis predictivo</li>
+                        <li>Visualización de datos</li>
+                        <li>Integración con múltiples fuentes</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Servicio 5 -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="imagenes/a5.jpg" alt="Seguridad Informática">
+                </div>
+                <div class="service-content">
+                    <h3>Consultoría en Seguridad Informática</h3>
+                    <p>Asesoramiento especializado en protección de datos sensibles de pacientes y cumplimiento de normativas de privacidad aplicables al sector.</p>
+                    <ul class="service-features">
+                        <li>Auditorías de seguridad</li>
+                        <li>Planificación de recuperación ante desastres</li>
+                        <li>Cumplimiento normativo</li>
+                        <li>Protección de datos sensibles</li>
+                        <li>Capacitación en seguridad</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Servicio 6 -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="imagenes/a6.jpg" alt="Capacitación y Soporte">
+                </div>
+                <div class="service-content">
+                    <h3>Capacitación y Soporte Continuo</h3>
+                    <p>Programas de formación para el personal y soporte técnico permanente para garantizar el máximo aprovechamiento de nuestras soluciones.</p>
+                    <ul class="service-features">
+                        <li>Capacitación presencial y virtual</li>
+                        <li>Documentación completa</li>
+                        <li>Soporte para emergencias</li>
+                        <li>Actualizaciones periódicas</li>
+                        <li>Optimización continua</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="#contacto" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso de Trabajo -->
+    <section class="process-section">
+        <div class="process-container">
+            <h2 class="section-title">Nuestro Proceso de Trabajo</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Consulta y Análisis</h4>
+                    <p>Comprendemos tus necesidades específicas y analizamos tus procesos actuales para identificar oportunidades de mejora.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Diseño y Planificación</h4>
+                    <p>Desarrollamos un plan detallado con soluciones personalizadas y un cronograma claro de implementación.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Desarrollo e Implementación</h4>
+                    <p>Creamos e implementamos las soluciones tecnológicas, asegurando una transición suave y eficiente.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Soporte y Mejora Continua</h4>
+                    <p>Brindamos soporte continuo y mejoramos constantemente las soluciones según tus necesidades cambiantes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contacto" class="cta-section">
+        <div class="cta-content">
+            <h2>¿Listo para transformar su establecimiento?</h2>
+            <p>Contáctenos hoy mismo para una consulta gratuita y descubra cómo nuestros servicios pueden optimizar sus operaciones y mejorar el cuidado animal.</p>
+            <a href="productos.html#cotizacion" class="btn btn-light">Solicitar Cotización</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="Pagina.html">Página Principal</a>
+            <a href="productos.html">Nuestros Productos</a>
+            <a href="mailto:contacto@clinivet.com">Contacto</a>
+        </div>
+        <p>CLINIVET SOFTWARE, S.A. DE C.V. — © <span id="year"></span> — Tecnología que impulsa el bienestar animal</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Menú móvil
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
